@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -55,6 +56,45 @@ namespace ADO.NET
             //{
             //    connection.Close(); Require if we don't use using above 
             //}
+        }
+        public void AddEmployee(EmployeeModel obj)
+        {
+            try
+            {
+                connection = new SqlConnection(connectionString);
+                SqlCommand command = new SqlCommand("spAddEmployees", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@Name", obj.Name);
+                command.Parameters.AddWithValue("@Gender", obj.Gender);
+                command.Parameters.AddWithValue("@Startdate", obj.Startdate);
+                command.Parameters.AddWithValue("@Phone", obj.Phone);
+                command.Parameters.AddWithValue("@Department", obj.Department);
+                command.Parameters.AddWithValue("@Address", obj.Address);
+                command.Parameters.AddWithValue("@Basic_Pay", obj.Basic_Pay);
+                command.Parameters.AddWithValue("@Deductions", obj.Deductions);
+                command.Parameters.AddWithValue("@Taxable_Pay", obj.Taxable_Pay);
+                command.Parameters.AddWithValue("@Income_Tax", obj.Income_Tax);
+                command.Parameters.AddWithValue("@Net_Pay", obj.Net_Pay);
+                connection.Open();
+                var result = command.ExecuteNonQuery();
+                if (result != 0)
+                {
+                    Console.WriteLine("Employee details added successfully");
+                }
+                else
+                {
+                    Console.WriteLine("Failed to add employee details");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
     }
 }
