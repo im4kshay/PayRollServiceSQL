@@ -96,5 +96,37 @@ namespace ADO.NET
                 connection.Close();
             }
         }
+        public void UpdateEmployee(EmployeeModel obj)
+        {
+            try
+            {
+                connection = new SqlConnection(connectionString);
+                SqlCommand command = new SqlCommand("spUpdateEmployee", connection)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                command.Parameters.AddWithValue("@Id", obj.Id);
+                command.Parameters.AddWithValue("@Name", obj.Name);
+                command.Parameters.AddWithValue("@Basic_Pay", obj.Basic_Pay);
+                connection.Open();
+                var result = command.ExecuteNonQuery();
+                if (result != 0)
+                {
+                    Console.WriteLine("Employee details updated successfully");
+                }
+                else
+                {
+                    Console.WriteLine("Failed to update employee details");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
     }
 }
