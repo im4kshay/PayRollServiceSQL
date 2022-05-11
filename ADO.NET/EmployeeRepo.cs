@@ -184,6 +184,131 @@ namespace ADO.NET
                 connection.Close();
             }
         }
+        public void GetSumOfSalary(string query)
+        {
+            try
+            {
+                DataSet dataSet = new DataSet();
+                using (connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                    adapter.Fill(dataSet);
+                    foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                    {
+                        Console.WriteLine(dataRow["sumsalary"] + "," + dataRow["Gender"]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+        public void GetAvgOfSalary(string query)
+        {
+            try
+            {
+                DataSet dataSet = new DataSet();
+                using (connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                    adapter.Fill(dataSet);
+                    foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                    {
+                        Console.WriteLine(dataRow["avgsalary"] + "," + dataRow["Gender"]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+        public void GetMaxOfSalary(string query)
+        {
+            try
+            {
+                DataSet dataSet = new DataSet();
+                using (connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                    adapter.Fill(dataSet);
+                    foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                    {
+                        Console.WriteLine(dataRow["maxsalary"] + "," + dataRow["Gender"]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+        public void GetMinOfSalary(string query)
+        {
+            try
+            {
+                DataSet dataSet = new DataSet();
+                using (connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                    adapter.Fill(dataSet);
+                    foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                    {
+                        Console.WriteLine(dataRow["minsalary"] + "," + dataRow["Gender"]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+        public void GetCount(string query)
+        {
+            try
+            {
+                DataSet dataSet = new DataSet();
+                using (connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                    adapter.Fill(dataSet);
+                    foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                    {
+                        Console.WriteLine(dataRow["EmployeeCount"] + "," + dataRow["Gender"]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
 
     }
 }

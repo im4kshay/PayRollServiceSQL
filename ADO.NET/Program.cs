@@ -15,7 +15,7 @@ namespace ADO.NET
             EmployeeRepo repo = new EmployeeRepo();
             try
             {
-                Console.WriteLine("Choose option or press 0 for exit\n1:Retrieve Data\n2:Add Data\n3:Update Basic_Salary\n4:Delete Data\n5:Retrive employee with date Range");
+                Console.WriteLine("Choose option or press 0 for exit\n1:Retrieve Data\n2:Add Data\n3:Update Basic_Salary\n4:Delete Data\n5:Retrive employee with date Range\n6:Find Sum Avg Max Min Count group by gender");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
                 {
@@ -63,6 +63,23 @@ namespace ADO.NET
                     case 5:
                         string query = "select * from employee_payroll where StartDate between cast ('2018-01-01' as date) and GETDATE()";
                         repo.GetEmployeesWithDataAdapter(query);
+                        break;
+                    case 6:
+                        string sumquery = "select sum(Basic_Pay) as sumsalary,Gender from employee_payroll group by Gender";
+                        string avgquery = "select avg(Basic_Pay) as avgsalary,Gender from employee_payroll group by Gender";
+                        string maxquery = "select max(Basic_Pay) as maxsalary,Gender from employee_payroll group by Gender";
+                        string minquery = "select min(Basic_Pay) as minsalary,Gender from employee_payroll group by Gender";
+                        string countquery = "select count(Name) as EmployeeCount,Gender from employee_payroll group by Gender";
+                        Console.WriteLine("Sum");
+                        repo.GetSumOfSalary(sumquery);
+                        Console.WriteLine("Avg");
+                        repo.GetAvgOfSalary(avgquery);
+                        Console.WriteLine("Max");
+                        repo.GetMaxOfSalary(maxquery);
+                        Console.WriteLine("Min");
+                        repo.GetMinOfSalary(minquery);
+                        Console.WriteLine("Count");
+                        repo.GetCount(countquery);
                         break;
                 }
                 Console.ReadLine();
