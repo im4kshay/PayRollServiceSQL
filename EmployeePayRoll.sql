@@ -94,3 +94,10 @@ create procedure spUpdateEmployee
 @Basic_Pay float
 as
 update employee_payroll set Basic_pay = @Basic_Pay where Id=@Id and Name= @Name;
+
+--delete employee
+create procedure spDeleteEmployee
+@Name varchar(100),
+@Id int
+as
+delete from employee_payroll where Id=@Id and Name = @Name;
