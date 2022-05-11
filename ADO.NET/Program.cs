@@ -10,6 +10,9 @@ namespace ADO.NET
     {
         static void Main(string[] args)
         {
+            EmployeeRepo repo = new EmployeeRepo();
+            repo.GetAllEmployees();
+            Console.ReadLine();
         }
     }
 }
