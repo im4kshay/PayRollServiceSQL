@@ -15,7 +15,7 @@ namespace ADO.NET
             EmployeeRepo repo = new EmployeeRepo();
             try
             {
-                Console.WriteLine("Choose option or press 0 for exit\n1:Retrieve Data\n2:Add Data\n3:Update Basic_Salary\n4:Delete Data\n5:Retrive employee with date Range\n6:Find Sum Avg Max Min Count group by gender");
+                Console.WriteLine("Choose option or press 0 for exit\n1:Retrieve Data\n2:Add Data\n3:Update Basic_Salary\n4:Delete Data\n5:Retrive employee with date Range\n6:Find Sum Avg Max Min Count group by gender\n7:Insert into two table");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
                 {
@@ -80,6 +80,10 @@ namespace ADO.NET
                         repo.GetMinOfSalary(minquery);
                         Console.WriteLine("Count");
                         repo.GetCount(countquery);
+                        break;
+                    case 7:
+                        EmployeeModel model3 = new EmployeeModel() { Name = "Ankit", Gender = 'M', Address = "Surat" };
+                        repo.InsertIntoTwoTables(model3);
                         break;
                 }
                 Console.ReadLine();
